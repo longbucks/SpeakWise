@@ -1,0 +1,30 @@
+import * as components from "./components";
+import * as state from "./store";
+import Navigo from "navigo";
+import { capitalize } from "lodash";
+
+const router = new Navigo(window.location.origin);
+router
+  .on({
+    "/": () => render(state.Home),
+    ":page": params => {
+      let page = capitalize(params.page);
+      render(state[page]);
+    }
+  })
+  .resolve();
+
+function render(st) {
+  document.querySelector("#root").innerHTML = `
+  ${components.Header(st)}
+  ${components.Nav(state.Links)}
+  ${components.Main(st)}
+  ${components.Footer()}
+
+  `;
+  router.updatePageLinks();
+}
+render(state.Home);
+document.querySelector(".fa-bars").addEventListener("click", () => {
+  document.querySelector("nav > ul").classList.toggle("hidden--mobile");
+});
