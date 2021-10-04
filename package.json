@@ -19,7 +19,6 @@
     "stylelint-vscode": "^7.0.0-6"
   },
   "dependencies": {
-    "node": "^15.8.0",
-    "yargs-parser": ">=13.1.2"    
+    "yargs-parser": ">=13.1.2"
   }
 }
