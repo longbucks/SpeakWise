@@ -14,7 +14,7 @@ router
   })
   .resolve();
 
-function render(st) {
+function render(st = state.Home) {
   document.querySelector("#root").innerHTML = `
   ${components.Header(st)}
   ${components.Nav(state.Links)}
