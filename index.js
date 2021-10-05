@@ -14,7 +14,7 @@ router
   })
   .resolve();
 
-function render(st) {
+function render(st = state.Home) {
   document.querySelector("#root").innerHTML = `
   ${components.Header(st)}
   ${components.Nav(state.Links)}
@@ -24,7 +24,7 @@ function render(st) {
   `;
   router.updatePageLinks();
 }
-render(state.Home);
+
 document.querySelector(".fa-bars").addEventListener("click", () => {
   document.querySelector("nav > ul").classList.toggle("hidden--mobile");
 });
