@@ -1,5 +1,6 @@
 import html from "html-literal";
 export default () =>
   html`
-    <footer>Speech is life the rest is just prep time</footer>
+    <footer>  <p> &copy; 2020 <a href="https://savvycoders.com/">Savvy Coders</a></p>
+    <p> Speech is life. The rest is just prep-time</a></p></footer>
   `;

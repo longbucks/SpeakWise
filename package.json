@@ -22,6 +22,8 @@
     "stylelint-vscode": "^7.0.0-6"
   },
   "dependencies": {
+    "axios": "^0.22.0",
+    "dotenv": "^10.0.0",
     "html-literal": "^1.1.0",
     "lodash": "^4.17.21",
     "navigo": "^7.1.3",
