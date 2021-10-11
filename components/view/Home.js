@@ -3,7 +3,7 @@ export default st => html`
   <section id="jumbotron">
     <h2>How to get started</h2>
     <h3>
-      My api call Weather in ${st.weather.city}
+      This is my api call Weather in ${st.weather.city}
       ${kelvinToFahrenheit(st.weather.temp)}F, feels like
       ${kelvinToFahrenheit(st.weather.feelsLike)}F
     </h3>
