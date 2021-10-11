@@ -1,7 +1,12 @@
 import html from "html-literal";
-export default () => html`
+export default st => html`
   <section id="jumbotron">
     <h2>How to get started</h2>
+    <h3>
+      This is my api call Weather in ${st.weather.city}
+      ${kelvinToFahrenheit(st.weather.temp)}F, feels like
+      ${kelvinToFahrenheit(st.weather.feelsLike)}F
+    </h3>
     <p>
       First you will need to record a video with speaking duration longer than 1
       min.
@@ -26,3 +31,5 @@ export default () => html`
     </p>
   </section>
 `;
+const kelvinToFahrenheit = kelvinTemp =>
+  Math.round((kelvinTemp - 273.15) * (9 / 5) + 32);
