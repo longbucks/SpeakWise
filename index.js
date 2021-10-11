@@ -16,15 +16,15 @@ router
 
 function render(st = state.Home) {
   document.querySelector("#root").innerHTML = `
-  ${components.Header(st)}
+
   ${components.Nav(state.Links)}
+  ${components.Header(st)}
   ${components.Main(st)}
   ${components.Footer()}
 
   `;
   router.updatePageLinks();
+  document.querySelector(".fa-bars").addEventListener("click", () => {
+    document.querySelector("nav > ul").classList.toggle("hidden--mobile");
+  });
 }
-
-document.querySelector(".fa-bars").addEventListener("click", () => {
-  document.querySelector("nav > ul").classList.toggle("hidden--mobile");
-});
