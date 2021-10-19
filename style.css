@@ -9,14 +9,33 @@ img {
 }
 
 @media only screen and (max-width: 700px) {
-  .container {
+  .grid-container {
+    min-height: 100vh;
+    margin: 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+  .grid-container-main {
+    border: black 7px solid;
+    align-self: center;
+    justify-self: center;
+  }
+  footer {
+    /* align-self: flex-end; */
+    border: blue 2px solid;
+    min-height: 50px;
+  }
+
+  .navContainer {
+    min-height: 50px;
+    border: black 2px solid;
     background-color: var(--main-color);
     width: 100%;
     margin: 0;
     overflow: hidden;
     position: relative;
   }
-  .container li {
+  .navContainer li {
     list-style: none;
     color: white;
     padding: 14px 16px;
@@ -24,7 +43,7 @@ img {
     font-size: 17px;
     display: block;
   }
-  .container li > a:visited,
+  .navContainer li > a:visited,
   a:link {
     color: #000;
     text-decoration: none;
