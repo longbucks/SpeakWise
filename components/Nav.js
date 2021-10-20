@@ -1,11 +1,12 @@
 import html from "html-literal";
-import home from "./view/Home";
 import img from "../img/noun_Microphone_40029.svg";
-export default Links => html`
+export default (Links, header, home) => html`
   <div class="navContainer">
-    <a href="${home}"> <img src="${img}"/></a>
+    <a href="/${home}"> <img src="${img}"/></a>
+
     <i class="fas fa-bars"></i>
     <nav>
+      <p>${header}</p>
       <ul class="hidden--mobile nav-links">
         ${Links.map(
           links =>
