@@ -4,6 +4,7 @@ import Navigo from "navigo";
 import { capitalize } from "lodash";
 import axios from "axios";
 import dotenv from "dotenv";
+import { Home } from "./components/view";
 
 const router = new Navigo(window.location.origin);
 dotenv.config();
@@ -52,7 +53,7 @@ router
 
 function render(st = state.Home, links = state.Links) {
   document.querySelector("#root").innerHTML = `
-${components.Grid(st, links)}
+${components.Grid(st, links, components.Header(st))}
 
   `;
   // ${components.Nav(state.Links)}

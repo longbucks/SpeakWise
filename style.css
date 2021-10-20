@@ -1,8 +1,8 @@
 :root {
   --main-font-family: "Lato", sans-serif;
-  --main-color: #26baff;
+  --main-color: #0076c7;
   --secondary-color: white;
-  --body-color: #4792ee;
+  --body-color: #0b5fde;
 }
 img {
   color: black;
@@ -14,9 +14,6 @@ img {
   }
   body {
     background-color: var(--body-color);
-  }
-  section {
-    color: black;
   }
 
   .grid-container {
@@ -30,7 +27,8 @@ img {
     align-self: center;
     justify-self: center;
     margin: 20px;
-    /* padding: 20px; */
+
+    padding: 20px;
   }
   .grid-container-main {
     display: grid;
@@ -45,7 +43,7 @@ img {
 
   .navContainer {
     min-height: 50px;
-    border: black 2px solid;
+    /* border: black 2px solid; */
     background-color: var(--main-color);
     width: 100%;
     margin: 0;
@@ -54,12 +52,12 @@ img {
   }
   .navContainer li {
     list-style: none;
-    color: white;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
     display: block;
   }
+
   .navContainer li > a:visited,
   a:link {
     color: #000;
@@ -75,15 +73,27 @@ img {
     font-size: larger;
   }
   footer {
-    border: blue 2px solid;
     min-height: 50px;
     position: relative;
     top: auto;
     bottom: 0;
     width: 100%;
     display: inline-block;
-    color: white;
+    background-color: var(--main-color);
   }
+  footer > a:visited,
+  a:link {
+    color: white;
+    text-decoration: none;
+  }
+  footer p {
+    color: black;
+  }
+
+  .grid-contact-container {
+    grid-template-rows: auto 1fr auto;
+  }
+
   #fs-frm input,
   #fs-frm select,
   #fs-frm textarea,
@@ -114,14 +124,15 @@ img {
   }
 
   /* border, padding, margin, width */
-  #fs-frm input,
-  #fs-frm select,
+
   #fs-frm textarea,
   #fs-frm #card-element {
     border: 1px solid rgba(0, 0, 0, 0.2);
     background-color: rgba(255, 255, 255, 0.9);
-    padding: 0.75em 1rem;
-    margin-bottom: 1.5rem;
+    padding-bottom: 15px;
+  }
+  #fs-frm input {
+    margin-bottom: 30px;
   }
   #fs-frm input:focus,
   #fs-frm select:focus,
@@ -150,44 +161,14 @@ img {
   #fs-frm [type="reset"]:focus {
     outline: none;
   }
-  #fs-frm [type="submit"],
+  #fs-frm [type="submit"] {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    float: right;
+  }
   #fs-frm [type="reset"] {
-    margin-bottom: 0;
-  }
-  #fs-frm select {
-    text-transform: none;
-  }
-
-  #fs-frm [type="checkbox"] {
-    -webkit-appearance: checkbox;
-    -moz-appearance: checkbox;
-    appearance: checkbox;
-    display: inline-block;
-    width: auto;
-    margin: 0 0.5em 0 0 !important;
-  }
-
-  #fs-frm [type="radio"] {
-    -webkit-appearance: radio;
-    -moz-appearance: radio;
-    appearance: radio;
-  }
-
-  /* address, locale */
-  #fs-frm fieldset.locale input[name="city"],
-  #fs-frm fieldset.locale select[name="state"],
-  #fs-frm fieldset.locale input[name="postal-code"] {
-    display: inline;
-  }
-  #fs-frm fieldset.locale input[name="city"] {
-    width: 52%;
-  }
-  #fs-frm fieldset.locale select[name="state"],
-  #fs-frm fieldset.locale input[name="postal-code"] {
-    width: 20%;
-  }
-  #fs-frm fieldset.locale input[name="city"],
-  #fs-frm fieldset.locale select[name="state"] {
-    margin-right: 3%;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    float: left;
   }
 }

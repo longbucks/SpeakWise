@@ -1,7 +1,7 @@
 import html from "html-literal";
 export default () => html`
   <section id="contact">
-    <div class="grid-item-contact">
+    <div class="grid-contact-container">
       <form
         id="fs-frm"
         name="simple-contact-form"
@@ -10,12 +10,21 @@ export default () => html`
         method="post"
       >
         <fieldset id="fs-frm-inputs">
-          <label for="full-name">Full Name</label>
+          <label for="first-name">First Name</label>
           <input
             type="text"
             name="name"
-            id="full-name"
-            placeholder="First and Last"
+            id="first-name"
+            placeholder="First Name"
+            required=""
+          />
+          <fieldset id="fs-frm-inputs">
+          <label for="last-name">Last Name</label>
+          <input
+            type="text"
+            name="name"
+            id="last-name"
+            placeholder="Last Name"
             required=""
           />
           <label for="email-address">Email Address</label>
@@ -31,7 +40,7 @@ export default () => html`
             rows="5"
             name="message"
             id="message"
-            placeholder="Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla nullam quis risus."
+            placeholder="ex: I am having a problem with your website dude"
             required=""
           ></textarea>
           <input
@@ -42,6 +51,7 @@ export default () => html`
           />
         </fieldset>
         <input type="submit" value="Submit" />
+        <input type="reset" value="Reset" />
       </form>
     </div>
   </section>
