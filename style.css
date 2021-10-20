@@ -1,29 +1,46 @@
 :root {
   --main-font-family: "Lato", sans-serif;
   --main-color: #26baff;
-  --secondary-color: black;
+  --secondary-color: white;
+  --body-color: #4792ee;
 }
 img {
   color: black;
   height: 40px;
 }
-
 @media only screen and (max-width: 700px) {
+  * {
+    font-family: var(--main-font-family);
+  }
+  body {
+    background-color: var(--body-color);
+  }
+  section {
+    color: black;
+  }
+
   .grid-container {
     min-height: 100vh;
     margin: 0;
     display: grid;
     grid-template-rows: auto 1fr auto;
   }
-  .grid-container-main {
-    border: black 7px solid;
+  .grid-item-main {
+    border: 1px black solid;
     align-self: center;
     justify-self: center;
+    margin: 20px;
+    /* padding: 20px; */
   }
-  footer {
-    /* align-self: flex-end; */
-    border: blue 2px solid;
-    min-height: 50px;
+  .grid-container-main {
+    display: grid;
+  }
+
+  .grid-item-home {
+    border: blue 1px solid;
+  }
+  .grid-item-home2 {
+    border: green 2px solid;
   }
 
   .navContainer {
@@ -58,7 +75,8 @@ img {
     font-size: larger;
   }
   footer {
-    background-color: black;
+    border: blue 2px solid;
+    min-height: 50px;
     position: relative;
     top: auto;
     bottom: 0;

@@ -23,6 +23,8 @@ export default st => html`
         After a couple of minutes the file wpuld be processed and a rubric will
         be sent with how well you did in the speech.
       </p>
+    </div>
+    <div class="grid-item-home2">
       <h2>Features we offer</h2>
       <p>
         SpeakWise will offer grading from certified speaking specialist to use a
