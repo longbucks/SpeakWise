@@ -2,7 +2,7 @@ import html from "html-literal";
 import img from "../img/noun_Microphone_40029.svg";
 export default (Links, header, home) => html`
   <div class="navContainer">
-    <a href="/${home}"> <img src="${img}"/></a>
+    <a href="/"> <img src="${img}"/></a>
 
     <i class="fas fa-bars"></i>
     <nav>
