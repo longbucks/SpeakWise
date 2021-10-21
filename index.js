@@ -58,8 +58,6 @@ ${components.Grid(st, links, components.Header(st), state.Home)}
   router.updatePageLinks();
   addEventListeners(st);
 }
-const videoSrc = document.querySelector("#video-source");
-const videoTag = document.querySelector("#video-tag");
 
 function addEventListeners(st) {
   // add event listeners to Nav items for navigation
@@ -83,6 +81,8 @@ function addEventListeners(st) {
 }
 
 function readVideo(event) {
+  const videoSrc = document.querySelector("#video-source");
+  const videoTag = document.querySelector("#video-tag");
   if (event.target.files && event.target.files[0]) {
     console.log("2nd hey");
     var reader = new FileReader();
