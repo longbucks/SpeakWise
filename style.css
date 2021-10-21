@@ -16,12 +16,13 @@ img {
   header,
   footer {
     font-family: var(--main-font-family);
-    font-weight: var(--header-font-weight);
+    /* font-weight: var(--header-font-weight); */
+    font-weight: 700;
   }
   section,
   nav li {
     font-family: var(--main-font-family);
-    font-weight: var(--body-font-weight);
+    /* font-weight: var(--body-font-weight); */
   }
   body {
     background-color: var(--body-color);

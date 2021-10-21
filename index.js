@@ -60,6 +60,7 @@ ${components.Grid(st, links, components.Header(st), state.Home)}
 }
 const videoSrc = document.querySelector("#video-source");
 const videoTag = document.querySelector("#video-tag");
+
 function addEventListeners(st) {
   // add event listeners to Nav items for navigation
   document.querySelectorAll("nav a").forEach(navLink =>
@@ -74,17 +75,21 @@ function addEventListeners(st) {
 
   if (st.page === "Dashboard") {
     console.log("hey");
-    document.querySelector("#input-tag").addEventListener("click", event => {
-      if (event.target.files && event.target.files[0]) {
-        console.log("2nd hey");
-        var reader = new FileReader();
-        reader.onload = function(e) {
-          videoSrc.src = e.target.result;
-          videoTag.load();
-        }.bind(this);
-
-        reader.readAsDataURL(event.target.files[0]);
-      }
+    document.querySelector("#input-tag").addEventListener("change", event => {
+      readVideo(event);
     });
+  }
+}
+
+function readVideo(event) {
+  if (event.target.files && event.target.files[0]) {
+    console.log("2nd hey");
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      videoSrc.src = e.target.result;
+      videoTag.load();
+    }.bind(this);
+
+    reader.readAsDataURL(event.target.files[0]);
   }
 }
