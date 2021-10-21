@@ -4,7 +4,6 @@ import Navigo from "navigo";
 import { capitalize } from "lodash";
 import axios from "axios";
 import dotenv from "dotenv";
-import { Home } from "./components/view";
 
 const router = new Navigo(window.location.origin);
 dotenv.config();
@@ -51,16 +50,24 @@ router
   })
   .resolve();
 
-function render(st = state.Home, links = state.Links) {
+function render(st, links = state.Links) {
   document.querySelector("#root").innerHTML = `
-${components.Grid(st, links, components.Header(st))}
+${components.Grid(st, links, components.Header(st), state.Home)}
 
   `;
-  // ${components.Nav(state.Links)}
-  // ${components.Header(st)}
-  // ${components.Main(st)}
-  // ${components.Footer()}
+
   router.updatePageLinks();
+  addEventListeners(st);
+}
+
+function addEventListeners(st) {
+  // add event listeners to Nav items for navigation
+  document.querySelectorAll("nav a").forEach(navLink =>
+    navLink.addEventListener("click", event => {
+      event.preventDefault();
+      render(st[event.target.title]);
+    })
+  );
   document.querySelector(".fa-bars").addEventListener("click", () => {
     document.querySelector("nav > ul").classList.toggle("hidden--mobile");
   });
