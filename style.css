@@ -1,5 +1,7 @@
 :root {
-  --main-font-family: "Lato", sans-serif;
+  --main-font-family: "Noto Sans Display", sans-serif;
+  --body-font-weight: 400;
+  --header-font-weight: 500;
   --main-color: #26baff;
   --secondary-color: white;
   --body-color: #4792ee;
@@ -9,8 +11,17 @@ img {
   height: 40px;
 }
 @media only screen and (max-width: 700px) {
-  * {
+  h2,
+  h1,
+  header,
+  footer {
     font-family: var(--main-font-family);
+    font-weight: var(--header-font-weight);
+  }
+  section,
+  nav li {
+    font-family: var(--main-font-family);
+    font-weight: var(--body-font-weight);
   }
   body {
     background-color: var(--body-color);
