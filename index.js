@@ -72,11 +72,12 @@ function addEventListeners(st) {
   document.querySelector(".fa-bars").addEventListener("click", () => {
     document.querySelector("nav > ul").classList.toggle("hidden--mobile");
   });
-
   if (st.page === "Dashboard") {
-    console.log("hey");
-    document.querySelector("#input-tag").addEventListener("change", event => {
-      readVideo(event);
+    document.querySelector("#input-tag").addEventListener("change", st => {
+      readVideo(st),
+        document.querySelector("#reset").addEventListener("click", () => {
+          document.querySelector("#video-tag").classList.add("#hidden-video");
+        });
     });
   }
 }

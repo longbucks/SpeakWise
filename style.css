@@ -11,6 +11,12 @@ img {
   height: 40px;
 }
 @media only screen and (max-width: 700px) {
+  #video-tag {
+    display: block;
+  }
+  #hidden-video {
+    display: none;
+  }
   h2,
   h1,
   header,
