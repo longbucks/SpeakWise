@@ -9,12 +9,15 @@ export default () => html`
       <button>upload a file</button>
       <h2>FeedBack</h2>
       <button>Get feed FeedBack</button>
-      <input type="file" accept="video/*" id="input-tag" />
-      <hr />
-      <video controls id="video-tag">
-        <source id="video-source" src="splashVideo" />
-        Your browser does not support the video tag.
-      </video>
+      <form id="dashvid">
+        <input type="file" accept="video/*" id="input-tag" />
+        <hr />
+        <video controls id="video-tag">
+          <source id="video-source" src="splashVideo" />
+          Your browser does not support the video tag.
+        </video>
+        <button id="reset">reset</button>
+      </form>
     </div>
   </section>
 `;
