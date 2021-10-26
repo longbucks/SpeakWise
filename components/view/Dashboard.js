@@ -9,7 +9,7 @@ export default () => html`
       <button>upload a file</button>
       <h2>FeedBack</h2>
       <button>Get feed FeedBack</button>
-      <form id="dashvid">
+      <form id="dashvid" method="POST" enctype="multipart/form-data">
         <input type="file" accept="video/*" id="input-tag" />
         <hr />
         <video controls id="video-tag">
