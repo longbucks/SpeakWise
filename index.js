@@ -64,18 +64,28 @@ function addEventListeners(st) {
   document.querySelectorAll("nav a").forEach(navLink =>
     navLink.addEventListener("click", event => {
       event.preventDefault();
-      render(st[event.target.title]);
     })
   );
   document.querySelector(".fa-bars").addEventListener("click", () => {
     document.querySelector("nav > ul").classList.toggle("hidden--mobile");
   });
+
   if (st.page === "Dashboard") {
+    // assign query to variable
+    const videoTag = document.querySelector("#video-tag");
+    const reset = document.querySelector("#reset");
+    //adds class in style to query
+    videoTag.classList.add("hidden");
+    reset.classList.add("hidden");
+
     document.querySelector("#input-tag").addEventListener("change", st => {
-      readVideo(st),
-        document.querySelector("#reset").addEventListener("click", () => {
-          document.querySelector("#video-tag").classList.add("#hidden-video");
-        });
+      readVideo(st), videoTag.classList.remove("hidden");
+      reset.classList.remove("hidden");
+      reset.addEventListener("click", event => {
+        event.preventDefault();
+        videoTag.classList.add("hidden");
+        reset.classList.add("hidden");
+      });
     });
   }
 }
@@ -84,6 +94,7 @@ function readVideo(event) {
   const videoSrc = document.querySelector("#video-source");
   const videoTag = document.querySelector("#video-tag");
   if (event.target.files && event.target.files[0]) {
+    console.log(event);
     console.log("2nd hey");
     var reader = new FileReader();
     reader.onload = function(e) {
