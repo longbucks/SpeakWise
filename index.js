@@ -74,15 +74,22 @@ function addEventListeners(st) {
     // assign query to variable
     const videoTag = document.querySelector("#video-tag");
     const reset = document.querySelector("#reset");
+    const upload = document.querySelector("#submit");
     //adds class in style to query
     videoTag.classList.add("hidden");
     reset.classList.add("hidden");
-
+    upload.classList.add("hidden");
+    document.querySelector("form").addEventListener("submit", event => {
+      event.preventDefault();
+    });
     document.querySelector("#input-tag").addEventListener("change", st => {
       readVideo(st), videoTag.classList.remove("hidden");
       reset.classList.remove("hidden");
+      upload.classList.remove("hidden");
+
       reset.addEventListener("click", event => {
         event.preventDefault();
+        upload.classList.add("hidden");
         videoTag.classList.add("hidden");
         reset.classList.add("hidden");
       });
