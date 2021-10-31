@@ -4,4 +4,5 @@ dist
 node_modules
 *.sw*
 .env
-./server/videos
+.parcel-cache
+server/videos

@@ -79,29 +79,36 @@ function addEventListeners(st) {
     videoTag.classList.add("hidden");
     reset.classList.add("hidden");
     upload.classList.add("hidden");
-    document.querySelector("form").addEventListener("submit", event => {
-      event.preventDefault();
-    });
+
     document.querySelector("#input-tag").addEventListener("change", st => {
       readVideo(st), videoTag.classList.remove("hidden");
       reset.classList.remove("hidden");
       upload.classList.remove("hidden");
+      console.log(st.target.files);
+    });
+    document.getElementById("button").addEventListener("click", function() {
+      document.querySelector(".bg-modal").style.display = "block";
+    });
 
-      reset.addEventListener("click", event => {
-        event.preventDefault();
-        upload.classList.add("hidden");
-        videoTag.classList.add("hidden");
-        reset.classList.add("hidden");
-      });
+    document.querySelector(".close").addEventListener("click", function() {
+      document.querySelector(".bg-modal").style.display = "none";
+    });
+    reset.addEventListener("click", event => {
+      event.preventDefault();
+      upload.classList.add("hidden");
+      videoTag.classList.add("hidden");
+      reset.classList.add("hidden");
+      render(state.Dashboard);
     });
   }
 }
 
 function readVideo(event) {
+  let formData = new FormData();
+  const upload = document.querySelector("#submit");
   const videoSrc = document.querySelector("#video-source");
   const videoTag = document.querySelector("#video-tag");
   if (event.target.files && event.target.files[0]) {
-    console.log(event);
     console.log("2nd hey");
     var reader = new FileReader();
     reader.onload = function(e) {
@@ -111,4 +118,20 @@ function readVideo(event) {
 
     reader.readAsDataURL(event.target.files[0]);
   }
+  formData.append("video", event.target.files[0]);
+  // axios.post("upload_file", formData, {
+  //   headers: {
+  //     "Content-Type": "multipart/form-data"
+  //   }
+  // });
+  upload.addEventListener("click", st => {
+    axios.post("http://localhost:4040/uploadVideo", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    });
+    st.preventDefault();
+
+    console.log(event.target.value);
+  });
 }
