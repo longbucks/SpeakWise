@@ -1,21 +1,26 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const multer = require("multer");
-const dotenv = require("dotenv");
-const app = express();
+const path = require("path");
+
 // Loads dotenv file
-dotenv.config();
+
 //create mongodb connection
-mongoose.connect(process.env.MONGODB);
-const db = mongoose.connection;
+
+const db = process.env.MONGODB;
+mongoose
+  .connect(db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: "true"
+  })
+  .then(console.log(`db connection is successful`))
+  .catch(err => console.log(err));
 // if connection is unsuccssful throws the erros defined below
-db.on("error", console.error.bind(console, "Connection error:"));
-db.once(
-  "open",
-  console.log.bind(console, "Successfully opened connection to Mongo!")
-);
+
 // creates a path for variable vids to route to.
 const vids = require("./routes/vids");
+const app = express();
 // Shows the request excuted and the time
 const logging = (req, res, next) => {
   console.log(`${req.method}${req.url}    Time: ${Date.now()}`);
@@ -43,7 +48,10 @@ app.use(cors);
 const videoStorage = multer.diskStorage({
   destination: "server/videos", // Destination to store video
   filename: (req, file, cb) => {
-    cb(null, Date.now() + "--" + file.originalname);
+    cb(
+      null,
+      file.fieldname + "_" + Date.now() + path.basename(file.originalname)
+    );
   }
 });
 
@@ -74,14 +82,19 @@ app.post(
   "/uploadVideo",
   videoUpload.single("video"),
   (req, res) => {
+    console.log(req.file);
     res.send(req.file);
   },
   (error, req, res, next) => {
     res.status(400).send({ error: error.message });
   }
 );
+app.get("/uploadVideo", (req, res) => {
+  res.send(req.file);
+});
+app.use("/api/v1/vids", vids);
+
 // sets the port vaible to the dot env or default to 4040
 const PORT = process.env.PORT || 4040;
-// app.use("/api/v1/vids", vids);
 //execute server
 app.listen(PORT, () => console.log(`listen on port ${PORT}`));
