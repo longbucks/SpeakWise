@@ -28,10 +28,14 @@ export default st => html`
       <h2>Features we offer</h2>
       <p>
         SpeakWise will offer grading from certified speaking specialist to use a
-        strong rubric to give effective feedback to the user. Coming Soon! We
-        will offer technology such as Artificial intelligence to give feedback
-        on based on the IELTS and CEFR scale. At SpeakWise we believe speech is
-        life and the rest is just prep-time.
+        strong rubric to give effective feedback to the user.
+      </p>
+      <p>
+        Coming Soon! We will offer technology such as Artificial intelligence to
+        give feedback
+      </p>
+      <p>
+        At SpeakWise we believe speech is life and the rest is just prep-time.
       </p>
     </div>
   </section>
