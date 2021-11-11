@@ -20,52 +20,68 @@
 }
 */
 
-.bg-modal {
-  grid-area: auto;
-  background-color: rgba(0, 0, 0, 0.8);
+.modal-btn {
+  margin-right: 20px;
+  float: right;
+}
+.close-button {
+  padding: 10px;
+}
+.content-rubric {
+  padding: 20px;
+}
+
+.modal {
+  /* background-color: blue; */
+  border: 3px solid rgba(197, 233, 255, 0.461);
+  border-radius: 15px;
+
+  padding-top: 20px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 300px;
+  max-height: 100%;
+  /* height: 50px; */
+  width: 600px;
+  max-width: 100%;
+  z-index: 1010;
+}
+.modal.closed {
+  display: none;
+}
+.hidden {
+  display: none;
+}
+.modal-guts {
+  /* other stuff we already covered */
+  /* cover the modal */
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0;
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
+  /* height: 50px; */
+  /* spacing as needed */
 
-.modal-contents {
-  height: 300px;
-  width: 400px;
-  background-color: white;
-  text-align: center;
-  padding: 20px;
-  position: relative;
-  border-radius: 4px;
-}
-
-.close {
-  position: absolute;
-  top: 0;
-  right: 10px;
-  font-size: 42px;
-  color: #333;
-  transform: rotate(45deg);
-  cursor: pointer;
-  &:hover {
-    color: #666;
-  }
+  /* padding:20px; */
+  /* margin: 20px; */
+  /* let it scroll */
+  overflow: auto;
 }
 
 img {
   color: black;
   height: 40px;
 }
+
 video {
   width: 200px;
   height: auto;
 }
-.hidden {
-  display: none;
-}
+
 h2,
 h1,
 header,
@@ -74,11 +90,13 @@ footer {
   /* font-weight: var(--header-font-weight); */
   font-weight: 700;
 }
+
 section,
 nav li {
   font-family: var(--main-font-family);
   /* font-weight: var(--body-font-weight); */
 }
+
 body {
   background-color: var(--body-color);
 }
@@ -89,23 +107,18 @@ body {
   display: grid;
   grid-template-rows: auto 1fr auto;
 }
+
 .grid-item-main {
-  border: 1px black solid;
   align-self: center;
   justify-self: center;
   margin: 20px;
-
   padding: 20px;
+  overflow: auto;
+  max-height: max-content;
 }
+
 .grid-container-main {
   display: grid;
-}
-
-.grid-item-home {
-  border: blue 1px solid;
-}
-.grid-item-home2 {
-  border: green 2px solid;
 }
 
 .navContainer {
@@ -117,12 +130,13 @@ body {
   overflow: hidden;
   position: relative;
 }
+
 .navContainer li {
   list-style: none;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
-  display: block;
+  display: inline-block;
 }
 
 .navContainer li > a:visited,
@@ -134,16 +148,19 @@ a:link {
 .hidden--mobile li {
   display: none;
 }
+
 /*
 a img {
   padding-top: 10px;
 } */
+
 i {
   float: right;
   padding: 10px;
   padding-top: 15px;
   font-size: larger;
 }
+
 footer {
   min-height: 50px;
   position: relative;
@@ -153,11 +170,13 @@ footer {
   display: inline-block;
   background-color: var(--main-color);
 }
+
 footer > a:visited,
 a:link {
   color: white;
   text-decoration: none;
 }
+
 footer p {
   color: black;
 }
@@ -185,6 +204,7 @@ footer p {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
+
 #fs-frm label,
 #fs-frm legend,
 #fs-frm ::placeholder {
@@ -203,9 +223,11 @@ footer p {
   background-color: rgba(255, 255, 255, 0.9);
   padding-bottom: 15px;
 }
+
 #fs-frm input {
   margin-bottom: 30px;
 }
+
 #fs-frm input:focus,
 #fs-frm select:focus,
 #fs-frm textarea:focus {
@@ -215,10 +237,12 @@ footer p {
   outline-color: gray;
   outline-offset: -1px;
 }
+
 #fs-frm [type="text"],
 #fs-frm [type="email"] {
   width: 100%;
 }
+
 #fs-frm [type="button"],
 #fs-frm [type="submit"],
 #fs-frm [type="reset"] {
@@ -228,22 +252,76 @@ footer p {
   -moz-appearance: button;
   appearance: button;
 }
+
 #fs-frm [type="button"]:focus,
 #fs-frm [type="submit"]:focus,
 #fs-frm [type="reset"]:focus {
   outline: none;
 }
+
 #fs-frm [type="submit"] {
   margin-top: 30px;
   margin-bottom: 10px;
   float: right;
 }
+
 #fs-frm [type="reset"] {
   margin-top: 30px;
   margin-bottom: 10px;
   float: left;
 }
+
 @media only screen and (max-width: 700px) {
+  .modal-btn {
+    margin-right: 20px;
+    float: right;
+  }
+  .close-button {
+    padding: 10px;
+  }
+  .content-rubric {
+    padding: 20px;
+  }
+
+  .modal {
+    /* background-color: blue; */
+    border: 3px solid rgba(197, 233, 255, 0.461);
+    border-radius: 15px;
+
+    padding-top: 20px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 300px;
+    max-height: 100%;
+    /* height: 50px; */
+    width: 600px;
+    max-width: 100%;
+    z-index: 1010;
+  }
+  .modal.closed {
+    display: none;
+  }
+
+  .modal-guts {
+    /* other stuff we already covered */
+    /* cover the modal */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* height: 50px; */
+    /* spacing as needed */
+
+    /* padding:20px; */
+    /* margin: 20px; */
+    /* let it scroll */
+    overflow: auto;
+  }
+
   video {
     width: 200px;
     height: auto;
@@ -267,7 +345,6 @@ footer p {
   body {
     background-color: var(--body-color);
   }
-
   .grid-container {
     min-height: 100vh;
     margin: 0;
@@ -279,20 +356,17 @@ footer p {
     align-self: center;
     justify-self: center;
     margin: 20px;
-
     padding: 20px;
   }
   .grid-container-main {
     display: grid;
   }
-
   .grid-item-home {
     border: blue 1px solid;
   }
   .grid-item-home2 {
     border: green 2px solid;
   }
-
   .navContainer {
     min-height: 50px;
     /* border: black 2px solid; */
@@ -309,13 +383,11 @@ footer p {
     font-size: 17px;
     display: block;
   }
-
   .navContainer li > a:visited,
   a:link {
     color: #000;
     text-decoration: none;
   }
-
   .hidden--mobile li {
     display: none;
   }
@@ -341,11 +413,9 @@ footer p {
   footer p {
     color: black;
   }
-
   .grid-contact-container {
     grid-template-rows: auto 1fr auto;
   }
-
   #fs-frm input,
   #fs-frm select,
   #fs-frm textarea,
@@ -374,9 +444,7 @@ footer p {
     display: flex;
     align-items: baseline;
   }
-
   /* border, padding, margin, width */
-
   #fs-frm textarea,
   #fs-frm #card-element {
     border: 1px solid rgba(0, 0, 0, 0.2);

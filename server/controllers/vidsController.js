@@ -1,4 +1,6 @@
 const Video = require("../models/Vids");
+const multer = require("multer");
+const path = require("path");
 
 exports.getAllVideos = async (req, res) => {
   try {

@@ -28,7 +28,7 @@
     "@parcel/config-default": "^2.0.0",
     "@parcel/transformer-raw": "^2.0.0",
     "@parcel/transformer-typescript-tsc": "^2.0.0",
-    "aws-sdk": "^2.1022.0",
+    "aws-sdk": "^2.1024.0",
     "axios": "^0.22.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
