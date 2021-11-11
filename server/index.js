@@ -2,8 +2,10 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const multer = require("multer");
-const path = require("path");
-
+const fs = require("fs");
+const util = require("util");
+const unlinkFile = util.promisify(fs.unlink);
+const { uploadFile, getFileStream } = require("./s3");
 // Loads dotenv file
 
 //create mongodb connection
@@ -20,6 +22,7 @@ mongoose
 
 // creates a path for variable vids to route to.
 const vids = require("./routes/vids");
+const rubric = require("./routes/rubric");
 const app = express();
 // Shows the request excuted and the time
 const logging = (req, res, next) => {
@@ -46,15 +49,10 @@ app.use(logging);
 app.use(cors);
 
 const videoStorage = multer.diskStorage({
-  destination: "server/videos", // Destination to store video
-  filename: (req, file, cb) => {
-    cb(
-      null,
-      file.fieldname + "_" + Date.now() + path.basename(file.originalname)
-    );
-  }
+  destination: "uploads/" // Destination to store video
 });
 
+//Software being uses is multer  This determines the file size
 const videoUpload = multer({
   storage: videoStorage,
   limits: {
@@ -68,31 +66,37 @@ const videoUpload = multer({
     cb(undefined, true);
   }
 });
-// app.get("/", (req, res) => {
-//   res.send("Hello People");
-// });
-app
-  .get("/status", (req, res) => {
-    res.status(200).json({ message: "service healthy" });
-  })
-  .post((req, res) => {
-    res.json({ requestBody: req.body });
-  });
+// This grabs an individual video from the s3 server to populate on the page
+app.get("/uploadVideo/:key", (req, res) => {
+  const key = req.params.key;
+  const readStream = getFileStream(key);
+  readStream.pipe(res);
+});
+
+//This my request to my server which sends the video to the aws S3 server which holds all of my videos
 app.post(
   "/uploadVideo",
   videoUpload.single("video"),
-  (req, res) => {
-    console.log(req.file);
-    res.send(req.file);
+  async (req, res) => {
+    const file = req.file;
+
+    const result = await uploadFile(file);
+    await unlinkFile(file.path);
+    console.log(result);
+    res.send({ videoPath: `/${result.key}` });
+    console.log({ videopath: `/${result.Key}` });
+
+    // res.send(req.file);
   },
   (error, req, res, next) => {
     res.status(400).send({ error: error.message });
   }
 );
-app.get("/uploadVideo", (req, res) => {
-  res.send(req.file);
-});
+// app.get("/uploadVideo", (req, res) => {
+//   res.send(req.file);
+// });
 app.use("/api/v1/vids", vids);
+app.use("/api/v1/rubric", rubric);
 
 // sets the port vaible to the dot env or default to 4040
 const PORT = process.env.PORT || 4040;
