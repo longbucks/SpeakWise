@@ -3,11 +3,7 @@ export default st => html`
   <section id="jumbotron">
     <div class="grid-item-home">
       <h2>How to get started</h2>
-      <h3>
-        This is my api call Weather in ${st.weather.city}
-        ${kelvinToFahrenheit(st.weather.temp)}F, feels like
-        ${kelvinToFahrenheit(st.weather.feelsLike)}F
-      </h3>
+
       <p>
         First you will need to record a video with speaking duration longer than
         1 min.
@@ -20,8 +16,8 @@ export default st => html`
       </p>
       <p>Notice it must be a mp4 or mp3 extension</p>
       <p>
-        After a couple of minutes the file wpuld be processed and a rubric will
-        be sent with how well you did in the speech.
+        After a couple of minutes the file will process and a rubric will be
+        sent with how well you did in your speech.
       </p>
     </div>
     <div class="grid-item-home2">

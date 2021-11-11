@@ -34,6 +34,7 @@ router.hooks({
           })
           .catch(err => console.log(err));
         break;
+
       default:
         done();
     }
@@ -70,41 +71,53 @@ function addEventListeners(st) {
     document.querySelector("nav > ul").classList.toggle("hidden--mobile");
   });
 
-  if (st.page === "Dashboard") {
-    // assign query to variable
-    const videoTag = document.querySelector("#video-tag");
-    const reset = document.querySelector("#reset");
-    const upload = document.querySelector("#submit");
-    //adds class in style to query
-    videoTag.classList.add("hidden");
-    reset.classList.add("hidden");
-    upload.classList.add("hidden");
+  switch (st.page) {
+    case "Teacher":
+      const getVideo = document.querySelector("#submit");
+      const source = document.querySelector("#videoSrc");
+      const v = document.querySelector("#videoId");
+      // getVideo.addEventListener("click", event => {
+      //   console.log(v.value);
+      //   fetch(`http://localhost:4040/uploadVideo/${v.value}`).then(res => {
+      //     source.src = res.url;
+      //   });
+      //   event.preventDefault();
+      // });
+      break;
 
-    document.querySelector("#input-tag").addEventListener("change", st => {
-      readVideo(st), videoTag.classList.remove("hidden");
-      reset.classList.remove("hidden");
-      upload.classList.remove("hidden");
-      console.log(st.target.files);
-    });
-    document.getElementById("button").addEventListener("click", function() {
-      document.querySelector(".bg-modal").style.display = "block";
-    });
-
-    document.querySelector(".close").addEventListener("click", function() {
-      document.querySelector(".bg-modal").style.display = "none";
-    });
-    reset.addEventListener("click", event => {
-      event.preventDefault();
-      upload.classList.add("hidden");
+    case "Dashboard": {
+      // assign query to variable
+      const videoTag = document.querySelector("#video-tag");
+      const reset = document.querySelector("#reset");
+      const upload = document.querySelector("#submit");
+      //adds class in style to query
       videoTag.classList.add("hidden");
       reset.classList.add("hidden");
-      render(state.Dashboard);
-    });
+      upload.classList.add("hidden");
+
+      document.querySelector("#input-tag").addEventListener("change", st => {
+        readVideo(st), videoTag.classList.remove("hidden");
+        reset.classList.remove("hidden");
+        upload.classList.remove("hidden");
+        console.log(st.target.files);
+      });
+
+      reset.addEventListener("click", event => {
+        event.preventDefault();
+        upload.classList.add("hidden");
+        videoTag.classList.add("hidden");
+        reset.classList.add("hidden");
+        render(state.Dashboard);
+      });
+
+      break;
+    }
   }
 }
 
 function readVideo(event) {
   let formData = new FormData();
+  const reset = document.querySelector("#reset");
   const upload = document.querySelector("#submit");
   const videoSrc = document.querySelector("#video-source");
   const videoTag = document.querySelector("#video-tag");
@@ -119,19 +132,18 @@ function readVideo(event) {
     reader.readAsDataURL(event.target.files[0]);
   }
   formData.append("video", event.target.files[0]);
-  // axios.post("upload_file", formData, {
-  //   headers: {
-  //     "Content-Type": "multipart/form-data"
-  //   }
-  // });
+
   upload.addEventListener("click", st => {
-    axios.post("http://localhost:4040/uploadVideo", formData, {
+    st.preventDefault();
+    videoTag.classList.add("hidden");
+    reset.classList.add("hidden");
+    upload.classList.add("hidden");
+    const result = axios.post("http://localhost:4040/uploadVideo", formData, {
       headers: {
         "Content-Type": "multipart/form-data"
       }
     });
-    st.preventDefault();
-
-    console.log(event.target.value);
+    alert("Your video was submitted successfully");
+    return result.data;
   });
 }
