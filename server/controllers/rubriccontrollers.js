@@ -29,3 +29,18 @@ exports.getOneRubric = async (req, res) => {
     });
   }
 };
+
+exports.getAllRubric = async (req, res) => {
+  try {
+    const getAllRubric = await Rubric.find(req.query);
+    res.status(200).json({
+      status: "Success",
+      rubric: { getAllRubric }
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: "Failed",
+      message: "Can not get Rubrics"
+    });
+  }
+};

@@ -74,13 +74,21 @@ function addEventListeners(st) {
   switch (st.page) {
     case "Teacher":
       const getVideo = document.querySelector("#submit");
-      const source = document.querySelector("#videoSrc");
+      const source = document.querySelector("source");
       const v = document.querySelector("#videoId");
       // getVideo.addEventListener("click", event => {
       //   console.log(v.value);
-      //   fetch(`http://localhost:4040/uploadVideo/${v.value}`).then(res => {
+      //   fetch(
+      //     `http://localhost:4040/uploadVideo/e949a03f38b837830b99b3b587ba5208`
+      //   ).then(res => {
+      //     console.log(v.value);
+      //     console.log(res);
       //     source.src = res.url;
+      //     console.log(source.src.toString());
+
+      //     // source.src = res
       //   });
+
       //   event.preventDefault();
       // });
       break;
